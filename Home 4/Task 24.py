@@ -7,14 +7,14 @@
 
 
 n = int(input("Введите количество кустов: "))
-arr = list()
+list_1 = list()
 for i in range(n):
     x = int(input(f"Введите чилсо ягод на кусте {i}"))
-    arr.append(x)
+    list_1.append(x)
 
-arr_count = list()
+list_2 = list()
 
-for i in range(len(arr)-1):
-    arr_count.append(arr[i-1]+arr[i]+arr[i+1])
-arr_count.append(arr[2]+arr[-1]+arr[0])
-print(max(arr_count))
+for i in range(len(list_1) - 1):
+    list_2.append(list_1[i - 1] + list_1[i] + list_1[i + 1])
+list_2.append(list_1[2] + list_1[-1] + list_1[0])
+print(max(list_2))
