@@ -19,21 +19,22 @@ def find_file():
 
 def change_file():
     find_info = input()
-    new_info = input()
     with open(path_file, 'r+', encoding='UTF-8') as f:
-        for line in f:
-            if find_info.casefold() in line.casefold():
-                if input("Да/Нет") == "Да":
-                    lst = (line.strip()).split(' ')
-                    print(lst)
-                else:
-                    continue
+        newfile = f.readlines()
+    for i in range(len(newfile)):
+        if find_info.casefold() in newfile[i].casefold():
+            print(newfile[i])
+            if input("Удалить(Да/Нет)") == "Да":
+                newfile[i] = ""
+            elif input("Изменить(Да/Нет)") == "Да":
+                newfile = input("Введите Измененный вариант"+'\n')
+    with open(path_file, 'w', encoding="UTF-8") as f:
+        f.writelines(newfile)
 
 
 def main():
-    cnt = True
-    while cnt:
-        ask = input("что выхотите сделать?(Чтение/Запись/Поиск/Изменение")
+    while True:
+        ask = input("что выхотите сделать?(Чтение/Запись/Поиск/Изменение(Удалить)")
         if ask == "Чтение":
             write_file()
         elif ask == "Поиск":
@@ -42,9 +43,8 @@ def main():
             read_file()
         elif ask == "Изменение":
             change_file()
-        ask = input("Вы закончили?(Да/Нет)")
-        if ask == "Да":
-            cnt = False
+        else:
+            break
 
 
 path_file = r'Telephonebook.txt'
